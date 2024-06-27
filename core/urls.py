@@ -20,6 +20,5 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('messages/send', view=views.process_message),
-    path('messages/predict', view=views.predict_image),
-    path('', include('admin_soft.urls')),
+    path('messages/predict', view=views.predict_image)
 ]
