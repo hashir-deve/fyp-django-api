@@ -43,16 +43,24 @@ def predict_image_using_gemini(file_path):
     print(f"Retrieved file '{file.display_name}' as: {sample_file.uri}")
 
     response = model.generate_content(
-        ["""Predict only name and calories of the Fruit or Vegetable without any description in image as illustrated below.
+        ["""Predict only name and calories of the Fruit or Vegetable without any description and don't parse it in json in image as illustrated below.
             name: , calories:
+            And if any other image is given return response as illustrated below.
+            error: Sorry I cannot recognize the given image is fruit or vegetable.
          """, sample_file]
     )
 
     predicted_properties = response.text
 
+        
     # Split the string by comma
     items = predicted_properties.split(',')
 
+    if "error" in predicted_properties:
+        return {
+            "name":"Not a Fruit or Vegetable",
+            "calories":"None"
+        }
     # Initialize an empty dictionary
     food_dict = {}
 
