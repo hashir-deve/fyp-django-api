@@ -26,11 +26,11 @@ SECRET_KEY = 'django-insecure-nny17k%lp&b923_xe=4g!56iuz_ufkahk$h5e)86(z*^9w@vp-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/core/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'core')
 
 ALLOWED_HOSTS = ['*']
-
+print("ALLOWED HOSTS", ALLOWED_HOSTS)
 
 # Application definition
 
@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ASGI_APPLICATION = 'core.routing.application'

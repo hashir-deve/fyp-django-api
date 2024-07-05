@@ -71,6 +71,8 @@ def handle_uploaded_file(f):
     filename = f"{timestamp}_{f.name}"
     file_path = os.path.join(settings.MEDIA_ROOT, filename)
 
+    print("**Upload File Path:**",file_path)
+    print("**Upload File Name:**",filename)
     with open(file_path, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
