@@ -19,7 +19,7 @@ def process_message(request):
         message = request.query_params['query']
         logger.debug("Asked Question: ", message)
 
-        query_result = call_gemini(message)
+        query_result = get_gemini_result(message)
         
         return response.Response({
             'response': query_result
@@ -80,3 +80,10 @@ def handle_uploaded_file(f):
     print(f"Absolute file path: {file_path}")
     return file_path
 
+
+def get_gemini_result(message):
+    try:
+        query_result = call_gemini(message)
+        return query_result
+    except Exception as exp:
+        get_gemini_result(message=message)
